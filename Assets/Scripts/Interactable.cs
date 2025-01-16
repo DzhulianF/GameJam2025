@@ -27,7 +27,9 @@ public class Interactable : MonoBehaviour
 
 
                 case objetsInteractable.torche:
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                anim.SetTrigger("FlammeTorche");
+                anim.SetBool("IsTorchBurning", true);
+                StartCoroutine(FlammeTorche());
                 break;
 
 
@@ -73,6 +75,13 @@ public class Interactable : MonoBehaviour
 
 
         }
+    }
+
+    public IEnumerator FlammeTorche()
+    {
+        yield return new WaitForSeconds(30f);
+        anim.SetBool("IsTorchBurning" , false);
+
     }
 
     public IEnumerator ChangeArbre()
