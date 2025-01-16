@@ -15,8 +15,9 @@ public class Interactable : MonoBehaviour
 
     public objetsInteractable interactable;
     [SerializeField] private Transform rotationPoint;
+    [SerializeField] private Animator anim;
 
- 
+
     public void interact()
     {
         switch (interactable)
@@ -57,8 +58,8 @@ public class Interactable : MonoBehaviour
 
 
                 case objetsInteractable.ice:
-                //anim.SetTrigger("Steam");
-                gameObject.SetActive(false);
+                anim.SetTrigger("Melt");
+                StartCoroutine(MeltIce());
                 break;
 
 
@@ -68,7 +69,6 @@ public class Interactable : MonoBehaviour
 
                 default:
                 Debug.Log("TuToucheARien");    
-
                 break;
 
 
@@ -84,7 +84,13 @@ public class Interactable : MonoBehaviour
         }
     
     }
-
+    public IEnumerator MeltIce()
+    {
+        yield return new WaitForSeconds(3f);
+        anim.SetBool("IsTheIceMelted", true);
+        gameObject.SetActive(false);
+     
+    }
     public IEnumerator BruleVigne()
     {
         yield return new WaitForSeconds(2.5f);
