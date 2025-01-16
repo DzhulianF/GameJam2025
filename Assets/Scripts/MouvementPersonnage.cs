@@ -9,7 +9,7 @@ public class MouvementPersonnage : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
-    private Animator anim;
+    [SerializeField] private Animator anim;
     private BoxCollider2D boxColliderPlayer;
     private float horizontalInput;
     private int jumpsCounter = 3;
@@ -18,8 +18,10 @@ public class MouvementPersonnage : MonoBehaviour
 
         //=============================Get les References================//
         rb = GetComponent<Rigidbody2D>();
-      //  anim = GetComponent<Animator>();
+      
         boxColliderPlayer = GetComponent<BoxCollider2D>();
+        transform.localScale = new Vector3(-1, 1, 1);
+
     }
 
 
@@ -39,15 +41,15 @@ public class MouvementPersonnage : MonoBehaviour
 
         //=============================Flip sprite================//
         if (horizontalInput > 0.01f) // Flip du sprite si tu marche left and right
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(-1, 1, 1);
 
         if (horizontalInput < -0.01f) // Flip du sprite si tu marche left and right
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = Vector3.one;
 
 
         //=============================Set les params du animator================//
-        //  anim.SetBool("IsWalking", horizontalInput != 0);
-        // anim.SetBool("grounded", isGrounded());
+          anim.SetBool("IsWalking", horizontalInput != 0);
+         anim.SetBool("grounded", isGrounded());
     }
 
     private void Walk()
@@ -72,7 +74,7 @@ public class MouvementPersonnage : MonoBehaviour
             jumpCd();
             Debug.Log("Saut de la terre");
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            // anim.SetTrigger("jump");
+             anim.SetTrigger("jump");
             jumpsCounter--;
             Debug.Log(jumpsCounter);
         }
@@ -83,7 +85,7 @@ public class MouvementPersonnage : MonoBehaviour
 
             Debug.Log("SautDansLesAirs");
             rb.velocity = new Vector2(rb.velocity.x, jumpPower - 0.5f );
-            //   anim.SetTrigger("jump");
+             anim.SetTrigger("jump");
             jumpsCounter--;
             Debug.Log(jumpsCounter);
 
