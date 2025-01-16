@@ -13,13 +13,14 @@ public class MouvementPersonnage : MonoBehaviour
     private BoxCollider2D boxColliderPlayer;
     private float horizontalInput;
     private int jumpsCounter = 3;
+    private PlayerRespawn _playerRespawn;
     private void Awake()
     {
 
         //=============================Get les References================//
         rb = GetComponent<Rigidbody2D>();
-      
-        boxColliderPlayer = GetComponent<BoxCollider2D>();
+        _playerRespawn = GetComponent<PlayerRespawn>();
+          boxColliderPlayer = GetComponent<BoxCollider2D>();
         transform.localScale = new Vector3(-1, 1, 1);
 
     }
@@ -36,6 +37,11 @@ public class MouvementPersonnage : MonoBehaviour
             jump();
            
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Kill();
         }
 
         if (!isGrounded())
@@ -69,6 +75,12 @@ public class MouvementPersonnage : MonoBehaviour
         {
             jumpsCounter = 3;
         }
+    }
+    private void Kill()
+    {
+        anim.SetTrigger("IsDead");
+        _playerRespawn.StartCoroutine("AnimationMort");
+
     }
     private void jump()
     {
