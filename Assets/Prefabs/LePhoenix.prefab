@@ -229,7 +229,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  speed: 10
+  speed: 7
   jumpPower: 5
   anim: {fileID: 3115492651444745413}
 --- !u!114 &2014462856651410637
