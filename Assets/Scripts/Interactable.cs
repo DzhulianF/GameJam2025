@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+ 
+    public enum objetsInteractable
     {
-        
-    }
+        torche,
+        arbre,
+        vignes,
+        ice
+    };
 
-    // Update is called once per frame
-    void Update()
+    public objetsInteractable interactable;
+    [SerializeField] private Transform rotationPoint;
+    public void interact()
     {
-        
+        switch (interactable)
+        {
+                case objetsInteractable.torche:
+
+
+                break;
+
+                case objetsInteractable.arbre:
+
+
+                rotationPoint.transform.eulerAngles = Vector3.forward * -90;
+                break;
+
+                case objetsInteractable.vignes:
+
+                break;
+
+
+                case objetsInteractable.ice: 
+                
+                break;
+
+        }
     }
 }

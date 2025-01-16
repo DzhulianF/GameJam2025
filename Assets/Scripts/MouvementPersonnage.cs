@@ -82,7 +82,7 @@ public class MouvementPersonnage : MonoBehaviour
     {
         anim.SetTrigger("IsDead");
         _playerRespawn.StartCoroutine("AnimationMort");
-        
+        dernierInteractableTouche.GetComponent<Interactable>().interact();
 
     }
     private void jump()

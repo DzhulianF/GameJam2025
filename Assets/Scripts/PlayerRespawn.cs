@@ -37,7 +37,7 @@ public class PlayerRespawn : MonoBehaviour
 
     public IEnumerator AnimationMort()
     {
-        yield return new WaitForSeconds(2.45f);
+        yield return new WaitForSeconds(2.2f);
         RespawnNow();
     }
 
