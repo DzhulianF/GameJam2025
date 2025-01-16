@@ -66,7 +66,7 @@ public class PlayerRespawn : MonoBehaviour
         yield return new WaitForSeconds(4.15f);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-    }
+    }                                   
 
 
 }
