@@ -38,7 +38,14 @@ public class MouvementPersonnage : MonoBehaviour
 
         }
 
-
+        if (!isGrounded())
+        {
+            anim.SetBool("InTheAir" , true);
+        }
+        else
+        {
+            anim.SetBool("InTheAir", false);
+        }
         //=============================Flip sprite================//
         if (horizontalInput > 0.01f) // Flip du sprite si tu marche left and right
             transform.localScale = new Vector3(-1, 1, 1);
@@ -97,7 +104,7 @@ public class MouvementPersonnage : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxColliderPlayer.bounds.center, boxColliderPlayer.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
-        
+       
     }
 
 
