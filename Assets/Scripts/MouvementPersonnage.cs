@@ -81,6 +81,13 @@ public class MouvementPersonnage : MonoBehaviour
     private void Kill()
     {
         anim.SetTrigger("IsDead");
+        if (rb != null)
+        {
+            transform.localScale = Vector3.one;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+
+        }
         _playerRespawn.StartCoroutine("AnimationMort");
         dernierInteractableTouche.GetComponent<Interactable>().interact();
 
