@@ -8,7 +8,12 @@ public class PlayerRespawn : MonoBehaviour
     public Vector3 respawnPoint;
     private float speed = 10.0f;
     [SerializeField] private Animator anim;
+    private Rigidbody2D rb;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     public void RespawnNow()
     {
      transform.position = respawnPoint;
@@ -22,7 +27,7 @@ public class PlayerRespawn : MonoBehaviour
             {
 
                 StartCoroutine(AnimationMortQuick());
-                
+               
             }
         }
 
@@ -31,6 +36,11 @@ public class PlayerRespawn : MonoBehaviour
 
     public IEnumerator AnimationMortQuick()
     {
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        }
         yield return new WaitForSeconds(1f);
         RespawnNow();
     }
@@ -43,8 +53,16 @@ public class PlayerRespawn : MonoBehaviour
 
     private void AnimationRebirth()
     {
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         anim.SetTrigger("Rebirth");
-      
+        StartCoroutine(UnFreezeConstraints());
     }
+    public IEnumerator UnFreezeConstraints()
+    {
+        yield return new WaitForSeconds(4.15f);
+        rb.constraints = RigidbodyConstraints2D.None;
+
+    }
+
 
 }
