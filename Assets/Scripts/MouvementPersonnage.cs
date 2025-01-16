@@ -46,7 +46,7 @@ public class MouvementPersonnage : MonoBehaviour
             Kill();
         }
 
-        if (!isGrounded())
+        if (!isGrounded() && !_playerRespawn.isDead)
         {
             anim.SetBool("InTheAir" , true);
         }
@@ -89,7 +89,11 @@ public class MouvementPersonnage : MonoBehaviour
 
         }
         _playerRespawn.StartCoroutine("AnimationMort");
-        dernierInteractableTouche.GetComponent<Interactable>().interact();
+        if (dernierInteractableTouche != null)
+        {
+            dernierInteractableTouche.GetComponent<Interactable>().interact();
+
+        }
 
     }
     private void jump()

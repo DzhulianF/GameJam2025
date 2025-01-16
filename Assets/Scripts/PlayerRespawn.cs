@@ -6,18 +6,19 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerRespawn : MonoBehaviour
 {
     public Vector3 respawnPoint;
-    private float speed = 10.0f;
     [SerializeField] private Animator anim;
     private Rigidbody2D rb;
-
+    public bool isDead = false;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
     public void RespawnNow()
     {
-     transform.position = respawnPoint;
+        transform.position = respawnPoint;
         AnimationRebirth();
+        transform.rotation = Quaternion.identity;
+       
     }
 
     private void OnCollisionEnter2D (Collision2D collision)
@@ -41,12 +42,15 @@ public class PlayerRespawn : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
 
         }
+        isDead = true;
+        anim.SetTrigger("vide");
         yield return new WaitForSeconds(1f);
         RespawnNow();
     }
 
     public IEnumerator AnimationMort()
     {
+        isDead = true;
         yield return new WaitForSeconds(2.2f);
         RespawnNow();
     }
