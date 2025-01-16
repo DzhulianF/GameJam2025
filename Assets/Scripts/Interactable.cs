@@ -10,7 +10,8 @@ public class Interactable : MonoBehaviour
         torche,
         arbre,
         vignes,
-        ice
+        ice,
+        arbreB
     };
 
     public objetsInteractable interactable;
@@ -44,6 +45,17 @@ public class Interactable : MonoBehaviour
                 gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
                 StartCoroutine(ChangeArbre());
                 break;
+
+                case objetsInteractable.arbreB:
+                for (int i = 0; i < gameObject.transform.childCount; i++)
+                {
+                    gameObject.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                rotationPoint.transform.eulerAngles = Vector3.forward * 90;
+                gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+                StartCoroutine(ChangeArbre());
+                break;
+
 
 
 
