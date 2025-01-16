@@ -1175,6 +1175,8 @@ MonoBehaviour:
   interactable: 2
   rotationPoint: {fileID: 548275116}
   anim: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  newSprite: {fileID: 0}
 --- !u!70 &988411410
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1817,6 +1819,8 @@ MonoBehaviour:
   interactable: 1
   rotationPoint: {fileID: 548275116}
   anim: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  newSprite: {fileID: 0}
 --- !u!1 &1610585383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,7 +1884,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.95
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1967,6 +1971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a699a6246ab37544a6ffd974779e772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 3, y: 0, z: -10}
   playerPosition: {fileID: 1689038060}
 --- !u!1 &1628647586
 GameObject:
@@ -2094,6 +2099,8 @@ MonoBehaviour:
   interactable: 3
   rotationPoint: {fileID: 548275116}
   anim: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  newSprite: {fileID: 0}
 --- !u!70 &1680590474
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2508,6 +2515,8 @@ MonoBehaviour:
   interactable: 0
   rotationPoint: {fileID: 548275116}
   anim: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  newSprite: {fileID: 0}
 --- !u!70 &2080146042
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

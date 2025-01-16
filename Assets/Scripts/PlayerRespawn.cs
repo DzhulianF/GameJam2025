@@ -6,7 +6,6 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerRespawn : MonoBehaviour
 {
     public Vector3 respawnPoint;
-    private float speed = 10.0f;
     [SerializeField] private Animator anim;
     private Rigidbody2D rb;
     public bool isDead = false;
