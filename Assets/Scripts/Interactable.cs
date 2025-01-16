@@ -15,17 +15,22 @@ public class Interactable : MonoBehaviour
 
     public objetsInteractable interactable;
     [SerializeField] private Transform rotationPoint;
-    [SerializeField] private Animator anim;
-    public SpriteRenderer spriteRenderer;
-    public Sprite newSprite;
+
+ 
     public void interact()
     {
         switch (interactable)
         {
+
+
+
+
                 case objetsInteractable.torche:
-                anim.SetTrigger("Fire");
-                gameObject.SetActive(false);
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
                 break;
+
+
+
 
                 case objetsInteractable.arbre:
                 for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -33,20 +38,32 @@ public class Interactable : MonoBehaviour
                     gameObject.transform.GetChild(i).gameObject.SetActive(true);
                 }
                 rotationPoint.transform.eulerAngles = Vector3.forward * -90;
+                gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
                 StartCoroutine(ChangeArbre());
                 break;
 
-                case objetsInteractable.vignes:
-                //  anim.SetTrigger("Fire");
-                gameObject.SetActive(false);
 
+
+                case objetsInteractable.vignes:
+                for (int i = 0; i < gameObject.transform.childCount; i++)
+                {
+                    gameObject.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                StartCoroutine(BruleVigne());
                 break;
+
+
+
 
 
                 case objetsInteractable.ice:
                 //anim.SetTrigger("Steam");
                 gameObject.SetActive(false);
                 break;
+
+
+
+
 
 
                 default:
@@ -65,7 +82,19 @@ public class Interactable : MonoBehaviour
         {
             gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
-        spriteRenderer.sprite = newSprite;
+    
+    }
+
+    public IEnumerator BruleVigne()
+    {
+        yield return new WaitForSeconds(2.5f);
+        gameObject.SetActive(false);
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+      
     }
 
 }
