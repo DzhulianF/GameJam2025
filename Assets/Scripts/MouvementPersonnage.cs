@@ -16,6 +16,7 @@ public class MouvementPersonnage : MonoBehaviour
     private PlayerRespawn _playerRespawn;
     private bool isItTouchingInteractable;
     private GameObject dernierInteractableTouche;
+    private int maxJumps = 3;
     private void Awake()
     {
 
@@ -75,7 +76,7 @@ public class MouvementPersonnage : MonoBehaviour
     {
         if(jumpsCounter == 0)
         {
-            jumpsCounter = 3;
+            jumpsCounter = maxJumps ;
         }
     }
     private void Kill()
@@ -138,7 +139,12 @@ public class MouvementPersonnage : MonoBehaviour
             Debug.Log(isItTouchingInteractable);
             dernierInteractableTouche = collision.gameObject;
         }
-
+        if (collision.gameObject.tag == "PlumeLaTraverse")
+        {
+            jumpsCounter = 4; 
+            maxJumps = 4;
+            collision.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -86,6 +86,8 @@ public class Interactable : MonoBehaviour
 
     public IEnumerator ChangeArbre()
     {
+        transform.gameObject.tag = "Ground";
+        gameObject.layer = 6;
         yield return new WaitForSeconds(2.5f);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
