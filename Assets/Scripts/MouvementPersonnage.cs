@@ -14,6 +14,8 @@ public class MouvementPersonnage : MonoBehaviour
     private float horizontalInput;
     private int jumpsCounter = 3;
     private PlayerRespawn _playerRespawn;
+    private bool isItTouchingInteractable;
+    private GameObject dernierInteractableTouche;
     private void Awake()
     {
 
@@ -80,14 +82,12 @@ public class MouvementPersonnage : MonoBehaviour
     {
         anim.SetTrigger("IsDead");
         _playerRespawn.StartCoroutine("AnimationMort");
+        
 
     }
     private void jump()
     {
         
-
-
-
         if (isGrounded())
         {
             jumpCd();
@@ -119,5 +119,22 @@ public class MouvementPersonnage : MonoBehaviour
        
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Interactable")
+        {
+            isItTouchingInteractable = true;
+            Debug.Log(isItTouchingInteractable);
+            dernierInteractableTouche = collision.gameObject;
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isItTouchingInteractable = false;
+        Debug.Log(isItTouchingInteractable);
+
+    }
 
 }

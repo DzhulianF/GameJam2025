@@ -12,6 +12,7 @@ public class PlayerRespawn : MonoBehaviour
     public void RespawnNow()
     {
      transform.position = respawnPoint;
+        AnimationRebirth();
     }
 
     private void OnCollisionEnter2D (Collision2D collision)
@@ -20,7 +21,7 @@ public class PlayerRespawn : MonoBehaviour
         {
             {
 
-                StartCoroutine(AnimationMort());
+                StartCoroutine(AnimationMortQuick());
                 
             }
         }
@@ -28,12 +29,22 @@ public class PlayerRespawn : MonoBehaviour
 
     }
 
-   public IEnumerator AnimationMort()
+    public IEnumerator AnimationMortQuick()
+    {
+        yield return new WaitForSeconds(1f);
+        RespawnNow();
+    }
+
+    public IEnumerator AnimationMort()
     {
         yield return new WaitForSeconds(2.45f);
         RespawnNow();
     }
 
-
+    private void AnimationRebirth()
+    {
+        anim.SetTrigger("Rebirth");
+      
+    }
 
 }
