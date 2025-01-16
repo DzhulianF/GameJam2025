@@ -85,7 +85,7 @@ public class MouvementPersonnage : MonoBehaviour
 
             Debug.Log("SautDansLesAirs");
             rb.velocity = new Vector2(rb.velocity.x, jumpPower - 0.5f );
-             anim.SetTrigger("jump");
+             anim.SetTrigger("doubleJump");
             jumpsCounter--;
             Debug.Log(jumpsCounter);
 
