@@ -60,7 +60,7 @@ public class Interactable : MonoBehaviour
 
     public IEnumerator ChangeArbre()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             gameObject.transform.GetChild(i).gameObject.SetActive(false);
