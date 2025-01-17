@@ -1430,7 +1430,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1938893692}
         m_TargetAssemblyTypeName: ManagerDeScene, Assembly-CSharp
-        m_MethodName: SceneJeu
+        m_MethodName: SceneExplication
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1856,7 +1856,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6a66f47240aa29b45b5c3ec36a9387c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 013543df344c99c499f95095f1032e00, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
