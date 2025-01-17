@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -19,7 +17,7 @@ public class Interactable : MonoBehaviour
     public objetsInteractable interactable;
     [SerializeField] private Transform rotationPoint;
     [SerializeField] private Animator anim;
-    BoxCollider2D [] collidersPourArbre;
+    
 
     public void interact()
     {
@@ -44,10 +42,7 @@ public class Interactable : MonoBehaviour
                     gameObject.transform.GetChild(i).gameObject.SetActive(true);
                 }
                 rotationPoint.transform.eulerAngles = Vector3.forward * -90;
-                 collidersPourArbre =  GetComponents<BoxCollider2D>();
-                foreach(BoxCollider2D colliderDarbre in collidersPourArbre){
-                    colliderDarbre.isTrigger = false;
-                }
+                gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
                 StartCoroutine(ChangeArbre());
                 break;
 
@@ -57,11 +52,7 @@ public class Interactable : MonoBehaviour
                     gameObject.transform.GetChild(i).gameObject.SetActive(true);
                 }
                 rotationPoint.transform.eulerAngles = Vector3.forward * 90;
-                collidersPourArbre = GetComponents<BoxCollider2D>();
-                foreach (BoxCollider2D colliderDarbre in collidersPourArbre)
-                {
-                    colliderDarbre.isTrigger = false;
-                }
+                gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
                 StartCoroutine(ChangeArbre());
                 break;
 
