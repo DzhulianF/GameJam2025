@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Explications.unity
     guid: a1256cdd3e44dac4c821151b172935ff
   - enabled: 1
-    path: Assets/Scenes/DzhulianSandbox.unity
-    guid: 956501c56c2a44442a6c55109a050615
+    path: Assets/Scenes/SceneGamePlay.unity
+    guid: d3f2551c8b6f21c4d866da271b768e9f
   - enabled: 1
     path: Assets/Scenes/CutScene.unity
     guid: f66c1eb91ff5ce248bb5ac51c1c747b3
