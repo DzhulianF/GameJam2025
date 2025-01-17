@@ -17,6 +17,7 @@ public class MouvementPersonnage : MonoBehaviour
     private bool isItTouchingInteractable;
     private GameObject dernierInteractableTouche;
     private int maxJumps = 3;
+    [SerializeField] private GameObject fleche;
     private void Awake()
     {
 
@@ -112,7 +113,7 @@ public class MouvementPersonnage : MonoBehaviour
 
         else if(jumpsCounter >0 &&!isGrounded())
         {
-            jumpCd();
+            //jumpCd();
 
             Debug.Log("SautDansLesAirs");
             rb.velocity = new Vector2(rb.velocity.x, jumpPower - 0.5f );
@@ -141,6 +142,7 @@ public class MouvementPersonnage : MonoBehaviour
         }
         if (collision.gameObject.tag == "PlumeLaTraverse")
         {
+            fleche.SetActive(true);
             jumpsCounter = 4; 
             maxJumps = 4;
             collision.gameObject.SetActive(false);
