@@ -18,6 +18,10 @@ public class MouvementPersonnage : MonoBehaviour
     private GameObject dernierInteractableTouche;
     private int maxJumps = 3;
     [SerializeField] private GameObject fleche;
+    public AudioSource audioSourcePlayer;
+    public AudioClip flapWings;
+    public AudioClip explosion;
+    public AudioClip plume;
     private void Awake()
     {
 
@@ -72,6 +76,7 @@ public class MouvementPersonnage : MonoBehaviour
     private void Walk()
     {
         rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+       
     }
     private void jumpCd()
     {
@@ -83,6 +88,7 @@ public class MouvementPersonnage : MonoBehaviour
     private void Kill()
     {
         anim.SetTrigger("IsDead");
+        audioSourcePlayer.PlayOneShot(explosion);
         if (rb != null)
         {
             transform.localScale = Vector3.one;
@@ -103,6 +109,7 @@ public class MouvementPersonnage : MonoBehaviour
         
         if (isGrounded())
         {
+            audioSourcePlayer.PlayOneShot(flapWings);
             jumpCd();
             Debug.Log("Saut de la terre");
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -113,8 +120,8 @@ public class MouvementPersonnage : MonoBehaviour
 
         else if(jumpsCounter >0 &&!isGrounded())
         {
-            //jumpCd();
-
+            jumpCd();
+            audioSourcePlayer.PlayOneShot(flapWings);
             Debug.Log("SautDansLesAirs");
             rb.velocity = new Vector2(rb.velocity.x, jumpPower - 0.5f );
              anim.SetTrigger("doubleJump");
@@ -142,6 +149,7 @@ public class MouvementPersonnage : MonoBehaviour
         }
         if (collision.gameObject.tag == "PlumeLaTraverse")
         {
+            audioSourcePlayer.PlayOneShot(plume);
             fleche.SetActive(true);
             jumpsCounter = 4; 
             maxJumps = 4;

@@ -9,6 +9,8 @@ public class PlayerRespawn : MonoBehaviour
     [SerializeField] private Animator anim;
     private Rigidbody2D rb;
     public bool isDead = false;
+    [SerializeField] private AudioSource audioSourcePlayer;
+    [SerializeField] private AudioClip BOO;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,15 +25,23 @@ public class PlayerRespawn : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D collision)
     {
-        if (collision.gameObject.tag == "TriggerMort")
+        if (collision.gameObject.tag == "TriggerMort" )
         {
             {
-
+              
                 StartCoroutine(AnimationMortQuick());
                
             }
         }
 
+        else if(collision.gameObject.tag == "TriggerMortBOO")
+        {
+            {
+                audioSourcePlayer.PlayOneShot(BOO);
+                StartCoroutine(AnimationMortQuick());
+
+            }
+        }
 
     }
 
@@ -42,6 +52,7 @@ public class PlayerRespawn : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
 
         }
+
         isDead = true;
         anim.SetTrigger("vide");
         yield return new WaitForSeconds(1f);

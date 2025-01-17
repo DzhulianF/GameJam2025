@@ -9,6 +9,7 @@ TagManager:
   - TriggerSpawn
   - Interactable
   - PlumeLaTraverse
+  - TriggerMortBOO
   layers:
   - Default
   - TransparentFX
