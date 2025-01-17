@@ -144,6 +144,8 @@ public class MouvementPersonnage : MonoBehaviour
             jumpsCounter = 4; 
             maxJumps = 4;
             collision.gameObject.SetActive(false);
+            anim.SetTrigger("IsDead");
+            _playerRespawn.StartCoroutine("AnimationMort");
         }
     }
 
@@ -151,7 +153,7 @@ public class MouvementPersonnage : MonoBehaviour
     {
         isItTouchingInteractable = false;
         Debug.Log(isItTouchingInteractable);
-
+     
     }
 
 }
