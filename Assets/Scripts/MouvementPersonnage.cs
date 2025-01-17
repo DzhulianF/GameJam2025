@@ -113,7 +113,7 @@ public class MouvementPersonnage : MonoBehaviour
 
         else if(jumpsCounter >0 &&!isGrounded())
         {
-            jumpCd();
+            //jumpCd();
 
             Debug.Log("SautDansLesAirs");
             rb.velocity = new Vector2(rb.velocity.x, jumpPower - 0.5f );

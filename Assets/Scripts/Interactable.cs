@@ -17,7 +17,8 @@ public class Interactable : MonoBehaviour
     public objetsInteractable interactable;
     [SerializeField] private Transform rotationPoint;
     [SerializeField] private Animator anim;
-    
+    [SerializeField] private Animator nuitJour;
+    private Collider2D[] collidersDesArbres; 
 
     public void interact()
     {
@@ -30,7 +31,7 @@ public class Interactable : MonoBehaviour
                 case objetsInteractable.torche:
                 anim.SetTrigger("FlammeTorche");
                 anim.SetBool("IsTorchBurning", true);
-                StartCoroutine(FlammeTorche());
+                switchAlaNuit();
                 break;
 
 
@@ -41,18 +42,32 @@ public class Interactable : MonoBehaviour
                 {
                     gameObject.transform.GetChild(i).gameObject.SetActive(true);
                 }
-                rotationPoint.transform.eulerAngles = Vector3.forward * -90;
-                gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+
+                anim.SetBool("isTreeFalling", true);
+
+                collidersDesArbres = GetComponents<Collider2D>();
+
+                foreach (Collider2D colliderIndividuel in collidersDesArbres)
+                {
+                    colliderIndividuel.isTrigger = false;
+                }
                 StartCoroutine(ChangeArbre());
                 break;
-
+                
                 case objetsInteractable.arbreB:
+
                 for (int i = 0; i < gameObject.transform.childCount; i++)
                 {
                     gameObject.transform.GetChild(i).gameObject.SetActive(true);
                 }
-                rotationPoint.transform.eulerAngles = Vector3.forward * 90;
-                gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+                anim.SetBool("isTreeFalling", true);
+
+                collidersDesArbres = GetComponents<Collider2D>();
+
+                foreach (Collider2D colliderIndividuel in collidersDesArbres)
+                {
+                    colliderIndividuel.isTrigger = false;
+                }
                 StartCoroutine(ChangeArbre());
                 break;
 
@@ -82,20 +97,16 @@ public class Interactable : MonoBehaviour
 
 
                 default:
-                Debug.Log("TuToucheARien");    
+                Debug.Log("TuToucheARien");
                 break;
-
 
         }
     }
 
-    public IEnumerator FlammeTorche()
+    private void switchAlaNuit()
     {
-        yield return new WaitForSeconds(30f);
-        anim.SetBool("IsTorchBurning" , false);
-
-    }
-
+        nuitJour.SetBool("isItNight", false);
+    }    
     public IEnumerator ChangeArbre()
     {
         transform.gameObject.tag = "Ground";
