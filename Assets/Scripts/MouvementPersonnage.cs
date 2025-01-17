@@ -17,6 +17,7 @@ public class MouvementPersonnage : MonoBehaviour
     private bool isItTouchingInteractable;
     private GameObject dernierInteractableTouche;
     private int maxJumps = 3;
+    [SerializeField] private GameObject fleche;
     private void Awake()
     {
 
@@ -141,6 +142,7 @@ public class MouvementPersonnage : MonoBehaviour
         }
         if (collision.gameObject.tag == "PlumeLaTraverse")
         {
+            fleche.SetActive(true);
             jumpsCounter = 4; 
             maxJumps = 4;
             collision.gameObject.SetActive(false);
