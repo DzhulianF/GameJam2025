@@ -12,7 +12,7 @@ public class ManagerDeScene : MonoBehaviour
 
     public void SceneJeu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
     }
 
